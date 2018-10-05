@@ -16,6 +16,7 @@ Just your traditional tic tac toe game on a
 
 ### Unfinished business
 
+* Create an algorithm to pre populate winning combimations in JS instead of hard coding it.
 * Get the winning combination to 'pulse' when a win is registered instead of the board clearing when a win occurs.
 * Add page reload animation.
 * Add functionality to insert player names and colour selectors.

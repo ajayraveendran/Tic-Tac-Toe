@@ -28,6 +28,7 @@ var resetButton = document.querySelector('.reset-button');
 var newButton = document.querySelector('.new-button');
 
 
+
 var checkMatch = function(playerSelectionArray){
   //create temp array to push 'x's into so we can count if a succesful combination is acheived. 
   //goal is to have this array reach a length of 3 IF an array matches.
@@ -50,6 +51,7 @@ var checkMatch = function(playerSelectionArray){
       //Return true as a the result of this function.
     } else  {
       return true;
+
     }
   }
 // none of the nested arrays (SO FAR..) is a subset of the player's selection. 
@@ -125,3 +127,4 @@ boxes.forEach(function(box){
 });
 
 resetButton.addEventListener('click', resetGame);
+newButton.addEventListener('click', resetGame);
