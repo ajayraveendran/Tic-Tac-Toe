@@ -1,7 +1,10 @@
 # Tic Tac Toe
 
 ![](tictactoe.gif)
+
+
 [Play](https://ajayraveendran.github.io/Tic-Tac-Toe/)
+
 
 ### What it does?
 
