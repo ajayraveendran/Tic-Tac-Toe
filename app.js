@@ -1,13 +1,14 @@
 console.log('TIC TAC TOE')
 
+//Basic variable assignment
 var clicks = 0;
-var gameCount = 0;
 var maxClicks = 9;
 var sideLength = 3;
-// var maxGameCount = ;
 var player1choices = [];
 var player2choices = [];
 var combinedChoices = [];
+
+//figure out how to dynamically add these arrays
 var winningCombinations = [
   ['1','2','3'],
   ['4','5','6'],
@@ -18,6 +19,8 @@ var winningCombinations = [
   ['1','5','9'],
   ['3','5','7']
 ]
+
+//assign DOM elements
 var player1score = document.querySelector('.p1score');
 var player2score = document.querySelector('.p2score');
 player1score.textContent = 0
@@ -27,44 +30,32 @@ var displayMessage = document.querySelector('.message');
 var resetButton = document.querySelector('.reset-button');
 var newButton = document.querySelector('.new-button');
 
-
-
+//Function to check for a match between player choice arrays and winnind input array
 var checkMatch = function(playerSelectionArray){
-  //create temp array to push 'x's into so we can count if a succesful combination is acheived. 
-  //goal is to have this array reach a length of 3 IF an array matches.
   var match = [];
-  //loop through nested arrays and hold on to each array as a variable.
   for (j = 0; j < winningCombinations.length; j++){
     var arrayInWinningCombinations = winningCombinations[j];
-    //loop through the array that is held onto in the previous step and match it against each item of the player's choices array.
     for (i = 0; i < arrayInWinningCombinations.length; i++){
-      //if results of the indexOf function isn't a -1 then a successful match was made in which case add an 'x' into the previously blank temp match array.
       if(playerSelectionArray.indexOf(arrayInWinningCombinations[i]) !== -1){
         match.push(arrayInWinningCombinations[i]);
       }
     }
-    //if 3 'x's weren't added then the array in the nested array isn't a subset of the player's selection array. 
-    //clear the temp match array anf move onto the next nested array.
     if(match.length !== sideLength){
       match = []
-      // else 3 x's were added which means one of the nested arrays in the winning combo array is a subset of the player's selection array. 
-      //Return true as a the result of this function.
     } else  {
       return true;
-
+      // think of how to make contents of Match pulse.
     }
   }
-// none of the nested arrays (SO FAR..) is a subset of the player's selection. 
-//This means the game is either a draw or all moves haven't been completed yet. Return false as the result of the function.
-return false
+  return false
 }
 
-
-
+// basic function to whiten out squares. Currently used in resetGame()
 var clearSquares = function(squares){
   squares.style.backgroundColor = 'white'
 }
 
+// Visually reset's board and in JS resets basic variables to default state of 0.
 var resetGame = function(){
   boxes.forEach(clearSquares);
   player1choices = [];
@@ -74,12 +65,18 @@ var resetGame = function(){
   displayMessage.textContent = ''
 }
 
+// KEY FUNCTION :- 
+// looks for win based on number of clicks. i.e. odd no. of clicks and resulting className are assigned to Player 1 and even no. to player 2
+// After each click, checks for win by using checkMatch()
+// resets game using resetGame() after a win or draw
 var userClick = function(event){
+  // checks if a previously selected box was reclicked.
   if(checkClick(event.target.className)){
     displayMessage.textContent = 'Please select a blank square';
   } else  {
+    //instantiate click counter once player 1 has clicked a box
     clicks++
-    
+    // ODD number clicks - Player 1 code block
     if(clicks % 2 !== 0){
       player1choices.push(event.target.className)
       combinedChoices.push(event.target.className)  
@@ -91,7 +88,7 @@ var userClick = function(event){
       } else  {
         displayMessage.textContent = 'Player 2, your move next'
       }
-      
+      //EVEN number clicks - Player 1 code block  
     } else  {
       player2choices.push(event.target.className);
       combinedChoices.push(event.target.className);
@@ -104,12 +101,11 @@ var userClick = function(event){
         displayMessage.textContent = 'Player 1, your move next'
       }
     } 
-    
-    if(clicks === 9 && checkMatch(player1choices) === false && checkMatch(player2choices) === false){
+    //Draw condition block
+    if(clicks === maxClicks && checkMatch(player1choices) === false && checkMatch(player2choices) === false){
       resetGame()
       displayMessage.textContent = `It's a Draw`
     }
-    // gameCount++
   }
 }
 
@@ -119,12 +115,10 @@ var checkClick = function(clickLocation){
   } else  {
     return false;
   }
-debugger
 }
 
 boxes.forEach(function(box){
   box.addEventListener('click', userClick)
 });
-
 resetButton.addEventListener('click', resetGame);
 newButton.addEventListener('click', resetGame);
