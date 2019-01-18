@@ -5,12 +5,12 @@
   font-size: 12px;
   color: gray;
 }
+
 body{
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   width: 80%;
-  
 }
 
 header{
@@ -28,29 +28,49 @@ main{
 
 h1{
   text-align: center;
-  font-size: 4rem;
-  margin: 0 auto;
+  font-size: 3rem;
+  margin: 10px auto;
 }
 
 .message{
   font-size: 2.5rem;
   font-weight: 700;
-  height: 50px;
-  margin: 0 auto;
+  height: 15px;
+  margin: 10px auto;
 }
 
-p{
+p {
   font-size: 2.5rem;
   font-weight: 400;
+}
+
+.aside-divs {
+  position: absolute;
+  width: 100%;
+}
+
+.active-player {
+  animation: pulse-player 0.6s linear infinite alternate;
+}
+
+@keyframes pulse-player {
+  0% {
+    font-size: 2.5rem;
+    font-weight: 400;
+  }
+  100% {
+    font-size: 3rem;
+    font-weight: 400;
+  }
 }
 
 .boxes{
   display: flex;
   flex-wrap: wrap;
-  height: 650px;
-  width: 650px;
+  height: 600px;
+  width: 600px;
   list-style: none;
-  text-align: center;  
+  text-align: center;
 }
 
 
@@ -65,7 +85,7 @@ li{
   border: dotted 1px black;
   border-radius: 20px;
   cursor: pointer;
-  transition: box-shadow 0.3s;
+  transition: all 0.2s ease-in;
 }
 
 .player1{
@@ -78,12 +98,26 @@ li{
 
 li:hover{
   box-shadow: 5px 5px 4px  rgba(0, 0, 0, 0.15);
+}
 
+.win-box{
+  animation: pulse-shadow 0.6s linear infinite alternate;
+}
+
+@keyframes pulse-shadow {
+  0% {
+    box-shadow: 0px 0px 0px  rgba(0, 0, 0, 0.15);
+  }
+  100% {
+    box-shadow: 6px 6px 5px  rgba(0, 0, 0, 0.60); 
+  }
 }
 
 aside{
   font-size: 2rem;
   text-align: center;
+  position: relative;
+  width: 20%
 }
 
 .p1score, .p2score{
@@ -92,32 +126,21 @@ aside{
 
 /* Button animation */
 button {
-  border: 5px solid transparent;
-  background: #AED6D1;
-  color: #55706D;
   border-radius: 40px;
   padding: 10px 25px;
   overflow: hidden;
-  width: 200px;
   transition: all 1.2s, border 0.5s 1s, box-shadow 0.3s 1s;
   white-space: nowrap;
-  text-indent: 33%;
-  font-weight: bold;
   font-size: 1.5rem;
   margin: 0 auto;
   cursor: pointer; 
-}
-button span {
-  display: inline-block;
-  -webkit-transform: translateX(300px);
-          transform: translateX(300px);
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: yellow;
-  opacity: 0;
-  transition: opacity 0.1s 0.5s, -webkit-transform 0.4s 0.5s;
-  transition: opacity 0.1s 0.5s, transform 0.4s 0.5s;
-  transition: opacity 0.1s 0.5s, transform 0.4s 0.5s, -webkit-transform 0.4s 0.5s;
+  font-weight: bold;
+
+  text-indent: 33%;
+  background: #AED6D1;
+  color: #55706D;
+  width: 200px;
+  border: 5px solid transparent;
 }
 button:hover {
   text-indent: 0;
@@ -125,11 +148,19 @@ button:hover {
   color: yellow;
   width: 250px;
   border: 5px solid #8DCCC4;
+  
   box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.15);
 }
+
+button span {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: yellow;
+  opacity: 0;
+}
+
 button:hover span {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
   opacity: 1;
 }
 
@@ -137,3 +168,16 @@ button:focus{
   outline: none;
 }
 
+.activate-btn {
+  text-indent: 0;
+  background: #55706D;
+  color: yellow;
+  width: 250px;
+  border: 5px solid #8DCCC4;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+}
+
+.activate-btn-span {
+  opacity: 1;
+}

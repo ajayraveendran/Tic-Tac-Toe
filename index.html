@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,23 +9,22 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:200" rel="stylesheet">
 </head>
+
 <body>
   <header>
-  <h1>TIC TAC TOE</h1>
-  <div>
-    <button class="reset-button">Reset
-      <span>Game</span>
-    </button>
-    <button class="new-button">New
-        <span>Game</span>
-      </button>
-  </div>
-  <p class="message"></p>
+    <h1>TIC TAC TOE</h1>
+    <div>
+      <button class="reset-button">Reset <span class="reset-button-span">game</span></button>
+      <button class="new-button">New <span class="new-button-span">game</span></button>
+    </div>
+    <p class="message"></p>
   </header>
   <main>
     <aside>
-      <p>player 1 score</p>
-      <div class="p1score"></div>
+      <div class="aside-divs">
+        <p class="player-1-text">player 1</p>
+        <div class="p1score"></div>
+      </div>
     </aside>
 
     <ul class="boxes">
@@ -40,10 +40,13 @@
     </ul>
 
     <aside>
-      <p>player 2 score</p>
-      <div class="p2score"></div>
+      <div class="aside-divs">
+        <p class="player-2-text">player 2</p>
+        <div class="p2score"></div>
+      </div>
     </aside>
   </main>
   <script src="app.js"></script>
 </body>
+
 </html>
