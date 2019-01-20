@@ -1,6 +1,5 @@
 console.log('TIC TAC TOE')
 
-//Basic variable assignment
 var clicks = 0;
 var maxClicks = 9;
 var sideLength = 3;
@@ -18,20 +17,48 @@ var winningCombinations = [
   ['3', '5', '7']
 ]
 
-//assign DOM elements
+
+
 var player1score = document.querySelector('.p1score');
 var player2score = document.querySelector('.p2score');
 var player1text = document.querySelector('.player-1-text');
 var player2text = document.querySelector('.player-2-text');
-var boxes = document.querySelectorAll('.boxes li');
+var boxes = document.querySelectorAll('.box');
 var displayMessage = document.querySelector('.message');
 var resetButton = document.querySelector('.reset-button');
 var resetButtonSpan = document.querySelector('.reset-button-span');
 var newButton = document.querySelector('.new-button');
+var newButtonSpan = document.querySelector('.new-button-span');
 
 player1score.textContent = 0
 player2score.textContent = 0;
+currentPlayer = 'player1'
+displayMessage.textContent = 'Player 1, your move first'
 player1text.classList.add('active-player')
+
+var removeActivePlayer = function () {
+  if (player1text.classList.contains('active-player')) {
+    player1text.classList.remove('active-player')
+  }
+  if (player2text.classList.contains('active-player')) {
+    player2text.classList.remove('active-player')
+  }
+}
+
+var switchStartingPlayer = function () {
+  if (currentPlayer === 'player1') {
+    currentPlayer = 'player2'
+    displayMessage.textContent = 'Player 2, your move first'
+    removeActivePlayer()
+    player2text.classList.add('active-player')
+  } else {
+    currentPlayer = 'player1'
+    displayMessage.textContent = 'Player 1, your move first'
+    removeActivePlayer()
+    player1text.classList.add('active-player')
+  }
+}
+
 
 var checkForWin = function (playerSelectionArray) {
   var match = [];
@@ -50,42 +77,47 @@ var checkForWin = function (playerSelectionArray) {
   return match
 }
 
-
 var userClick = function (event) {
-  if (checkClick(event.target.classList[0])) {
+  if (checkClick(event.target.classList[1])) {
     displayMessage.textContent = 'Please select a blank square';
   } else {
     clicks++
 
-    if (clicks % 2 !== 0) {
-      player1choices.push(event.target.classList[0])
-      combinedChoices.push(event.target.classList[0])
+    if (currentPlayer === 'player1') {
+      player1choices.push(event.target.classList[1])
+      combinedChoices.push(event.target.classList[1])
       event.target.classList.add('player1')
 
       if (checkForWin(player1choices).length === 3) {
         displayMessage.textContent = 'Player 1 wins';
         player1score.textContent = Number(player1score.textContent) + 1
         addWinToDom(checkForWin(player1choices))
+        player1score.classList.add('active-score')
+        removeActivePlayer()
         stoplisteningForClicks()
         activateResetBtn()
       } else {
+        currentPlayer = 'player2'
         displayMessage.textContent = 'Player 2, your move next'
         player1text.classList.toggle('active-player')
         player2text.classList.toggle('active-player')
       }
-      
+
     } else {
-      player2choices.push(event.target.classList[0]);
-      combinedChoices.push(event.target.classList[0]);
+      player2choices.push(event.target.classList[1]);
+      combinedChoices.push(event.target.classList[1]);
       event.target.classList.add('player2')
-      
+
       if (checkForWin(player2choices).length === 3) {
         displayMessage.textContent = 'Player 2 wins';
         player2score.textContent = Number(player2score.textContent) + 1
         addWinToDom(checkForWin(player2choices))
+        player2score.classList.add('active-score')
+        removeActivePlayer()
         stoplisteningForClicks()
         activateResetBtn()
       } else {
+        currentPlayer = 'player1'
         displayMessage.textContent = 'Player 1, your move next'
         player1text.classList.toggle('active-player')
         player2text.classList.toggle('active-player')
@@ -96,6 +128,7 @@ var userClick = function (event) {
       displayMessage.textContent = `It's a Draw`
       stoplisteningForClicks()
       activateResetBtn()
+      removeActivePlayer()
     }
   }
 }
@@ -109,11 +142,11 @@ var checkClick = function (clickLocation) {
 }
 
 var resetGame = function () {
+  switchStartingPlayer()
   player1choices = [];
   player2choices = [];
   combinedChoices = [];
   clicks = 0;
-  displayMessage.textContent = ''
   boxes.forEach(function (box) {
     if (box.classList.contains('player1')) {
       box.classList.remove('player1')
@@ -124,11 +157,15 @@ var resetGame = function () {
     if (box.classList.contains('win-box')) {
       box.classList.remove('win-box')
     }
-    
-    box.addEventListener('click', userClick)
 
-    activateResetBtn()
-  
+    if (player1score.classList.contains('active-score')) {
+      player1score.classList.remove('active-score')
+    } else {
+      player2score.classList.remove('active-score')
+    }
+
+    box.addEventListener('click', userClick)
+    deactivateResetBtn()
   });
 
 }
@@ -157,13 +194,22 @@ var addWinToDom = function (playerSelectionArray) {
 }
 
 var activateResetBtn = function () {
-  if (resetButton.classList.contains('activate-btn')) {
-    resetButtonSpan.classList.toggle('activate-btn-span')
-    resetButton.classList.toggle('activate-btn')
-  } else {
-    resetButton.classList.toggle('activate-btn')
-    resetButtonSpan.classList.toggle('activate-btn-span')
-  }
+  resetButtonSpan.classList.add('activate-btn-span')
+  resetButton.classList.add('activate-btn')
+}
+
+var deactivateResetBtn = function () {
+  resetButton.classList.remove('activate-btn')
+  resetButtonSpan.classList.remove('activate-btn-span')
+}
+var activateNewBtn = function () {
+  newButtonSpan.classList.add('activate-btn-span')
+  newButton.classList.add('activate-btn')
+}
+
+var deactivateNewBtn = function () {
+  newButton.classList.remove('activate-btn')
+  newButtonSpan.classList.remove('activate-btn-span')
 }
 
 boxes.forEach(function (box) {
@@ -172,6 +218,8 @@ boxes.forEach(function (box) {
 
 resetButton.addEventListener('click', resetGame);
 newButton.addEventListener('click', newGame);
-
-
+resetButton.addEventListener('mouseover', activateResetBtn)
+resetButton.addEventListener('mouseout', deactivateResetBtn)
+newButton.addEventListener('mouseover', activateNewBtn)
+newButton.addEventListener('mouseout', deactivateNewBtn)
 

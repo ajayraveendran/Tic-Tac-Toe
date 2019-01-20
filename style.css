@@ -67,18 +67,14 @@ p {
 .boxes{
   display: flex;
   flex-wrap: wrap;
+  padding: 0 0;
   height: 600px;
   width: 600px;
   list-style: none;
   text-align: center;
 }
 
-
-ul{
-  padding: 0 0;
-}
-
-li{
+.box{
   height: 30%;
   width: 30%;
   margin: 10px 10px;
@@ -96,7 +92,7 @@ li{
   background-color: lightgray;
 }
 
-li:hover{
+.box:hover{
   box-shadow: 5px 5px 4px  rgba(0, 0, 0, 0.15);
 }
 
@@ -124,6 +120,21 @@ aside{
   font-size: 7rem;
 }
 
+.active-score {
+  animation: pulse-score 0.6s linear infinite alternate;
+}
+
+@keyframes pulse-score {
+  0% {
+    font-size: 7rem;
+    font-weight: 400;
+  }
+  100% {
+    font-size: 9rem;
+    font-weight: 400;
+  }
+}
+
 /* Button animation */
 button {
   border-radius: 40px;
@@ -142,7 +153,7 @@ button {
   width: 200px;
   border: 5px solid transparent;
 }
-button:hover {
+/* button:hover {
   text-indent: 0;
   background: #55706D;
   color: yellow;
@@ -150,7 +161,7 @@ button:hover {
   border: 5px solid #8DCCC4;
   
   box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.15);
-}
+} */
 
 button span {
   display: inline-block;
@@ -160,9 +171,9 @@ button span {
   opacity: 0;
 }
 
-button:hover span {
+/* button:hover span {
   opacity: 1;
-}
+} */
 
 button:focus{
   outline: none;
