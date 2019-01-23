@@ -18,7 +18,7 @@ var winningCombinations = [
 ]
 
 
-
+var toHide = document.querySelectorAll('.to-hide')
 var player1score = document.querySelector('.p1score');
 var player2score = document.querySelector('.p2score');
 var player1text = document.querySelector('.player-1-text');
@@ -30,10 +30,30 @@ var resetButtonSpan = document.querySelector('.reset-button-span');
 var newButton = document.querySelector('.new-button');
 var newButtonSpan = document.querySelector('.new-button-span');
 
+var hideElements = function () {
+  toHide.forEach(function (element) {
+    element.classList.add('hidden')
+    displayMessage.classList.add('initializing')
+    displayMessage.textContent = 'Initializing..'
+  })
+}
+
+var showElements = function () {
+  toHide.forEach(function (element) {
+    element.classList.remove('hidden')
+    displayMessage.classList.remove('initializing')
+    displayMessage.textContent = 'Player 1, your move first'
+  })
+}
+
+
+hideElements()
+setTimeout(showElements, 2000)
+
+
 player1score.textContent = 0
 player2score.textContent = 0;
 currentPlayer = 'player1'
-displayMessage.textContent = 'Player 1, your move first'
 player1text.classList.add('active-player')
 
 var removeActivePlayer = function () {
@@ -171,11 +191,22 @@ var resetGame = function () {
 }
 
 var newGame = function () {
-  resetGame()
-  player1score.textContent = 0
-  player2score.textContent = 0;
-}
+  hideElements()
+  setTimeout(() => {
+    showElements()
+    resetGame()
+    player1score.textContent = 0
+    player2score.textContent = 0;
 
+    if (currentPlayer === 'player2') {
+      currentPlayer = 'player1'
+      displayMessage.textContent = 'Player 1, your move first'
+      removeActivePlayer()
+      player1text.classList.add('active-player')
+    }
+
+  }, 2000)
+}
 
 var stoplisteningForClicks = function () {
   boxes.forEach(function (box) {

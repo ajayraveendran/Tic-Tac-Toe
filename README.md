@@ -18,5 +18,5 @@ Just your traditional tic tac toe game on a
 ### Unfinished business
 
 * ~~Get the winning combination to 'pulse' when a win is registered instead of the board clearing when a win occurs.~~ Done
-* Add page reload animation.
-* Carry out the above with the view of optimising for mobile.
+* ~~Add page reload animation.~~ Done. Added _initializing_ with a pulse animation. 
+* ~~Carry out the above with the view of optimising for mobile.~~ Done. Added media queries and converted as many px to % as possible.
