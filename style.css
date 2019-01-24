@@ -2,6 +2,7 @@
   box-sizing: border-box;
   font-family: 'Work Sans', sans-serif;
   font-size: 0.7rem;
+  font-weight: 900;
   color: gray;
 }
 
@@ -43,7 +44,6 @@ h1{
 }
 .message{
   font-size: 3rem;
-  font-weight: 700;
   margin: 1% 0 1% 0;
 }
 
@@ -62,7 +62,6 @@ h1{
 
 .player-1-text, .player-2-text {
   font-size: 2.5rem;
-  font-weight: 400;
 }
 
 .aside-divs {
@@ -159,7 +158,6 @@ button {
   font-size: 1.5rem;
   margin: 0 auto;
   cursor: pointer; 
-  font-weight: bold;
 
   text-indent: 34%;
   background: #AED6D1;
@@ -170,7 +168,6 @@ button {
 
 button span {
   display: inline-block;
-  font-weight: 900;
   font-size: 1.8rem;
   color: yellow;
   opacity: 0;
@@ -209,7 +206,6 @@ button:focus{
 
   .player-1-text, .player-2-text {
     font-size: 2.5rem;
-    font-weight: 400;
   }
 
   @keyframes pulse-player {
@@ -236,7 +232,6 @@ button:focus{
 
   .message{
     font-size: 2.5rem;
-    font-weight: 500;
   }
 
   button {
@@ -247,7 +242,6 @@ button:focus{
     font-size: 1.8rem;
     margin: 0 auto;
     cursor: pointer; 
-    font-weight: bold;
   
     text-indent: 34%;
     background: #AED6D1;
@@ -295,7 +289,6 @@ button:focus{
 
   .player-1-text, .player-2-text {
     font-size: 1.5rem;
-    font-weight: 400;
   }
 
   @keyframes pulse-player {
@@ -322,7 +315,6 @@ button:focus{
 
   .message{
     font-size: 2rem;
-    font-weight: 500;
   }
 
   button {
@@ -333,7 +325,6 @@ button:focus{
     font-size: 0.8rem;
     margin: 0 auto;
     cursor: pointer; 
-    font-weight: bold;
   
     text-indent: 34%;
     background: #AED6D1;
@@ -380,7 +371,6 @@ button:focus{
 
   .player-1-text, .player-2-text {
     font-size: 1.5rem;
-    font-weight: 400;
   }
 
   @keyframes pulse-player {
@@ -407,7 +397,6 @@ button:focus{
 
   .message{
     font-size: 1.75rem;
-    font-weight: 500;
   }
 
   button {
@@ -418,7 +407,6 @@ button:focus{
     font-size: 0.8rem;
     margin: 0 auto;
     cursor: pointer; 
-    font-weight: bold;
   
     text-indent: 34%;
     background: #AED6D1;
@@ -465,7 +453,6 @@ button:focus{
 
   .player-1-text, .player-2-text {
     font-size: 1rem;
-    font-weight: 400;
   }
 
   @keyframes pulse-player {
@@ -492,7 +479,6 @@ button:focus{
 
   .message{
     font-size: 1.5rem;
-    font-weight: 500;
   }
 
   button {
@@ -503,7 +489,6 @@ button:focus{
     font-size: 0.8rem;
     margin: 0 auto;
     cursor: pointer; 
-    font-weight: bold;
   
     text-indent: 34%;
     background: #AED6D1;
